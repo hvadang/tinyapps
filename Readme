@@ -1,0 +1,22 @@
++ Setting up the BaseStation:
+ cd $TOSROOT/Deluge_apps/Basestation
+ make telosb install,0 bsl,/dev/ttyUSB0
+
++ Setting up Client 1 (also works as the Root in Sensor Collection App)
+ cd $TOSROOT/Deluge_apps/GoldenImage
+ CFLAGS=-DDELUGE_LIGHT_BASESTATION make telosb install,1 bsl,/dev/ttyUSB0
+
++ Setting up Client 2 (works as Client in Sensor Collection App
+ cd $TOSROOT/Deluge_apps/GoldenImage
+ CFLAGS=-DDELUGE_LIGHT_BASESTATION make telosb install,2 bsl,/dev/ttyUSB0
+
++ Inject image 1 (Blink Apps) to BaseStation:
+ tos-deluge serial@/dev/ttyUSB0:115200 -i 1 $TOSROOT/Deluge_apps/Blink/build/telosb/tos_image.xml
+ 
++ Disseminate image 1:
+ tos-deluge serial@/dev/ttyUSB0:115200 -d 1
+
++ Reprogram image 1:
+ tos-deluge serial@/dev/ttyUSB0:115200 -dr 1
+
++ 
